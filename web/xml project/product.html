@@ -1,19 +1,36 @@
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products Search XML</title>
-</head>
+<html>
 
 <body>
-    <nav>
-        <a href="http://"></a>
-        <a href="http://"></a>
-        <a href="http://"></a>
-        <a href="http://"></a>
-        <a href="http://"></a>
-    </nav>
+    <h1>TutorialsPoint DOM example </h1>
+    <div>
+        <b>Code:</b> <span id="code"></span><br>
+        <b>Category:</b> <span id="category"></span><br>
+        <b>Description:</b> <span id="description"></span><br>
+        <b>Quantity:</b> <span id="quantity"></span><br>
+        <b>Price:</b> <span id="price"></span>
+    </div>
+    <script>
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.open("GET", "ca-products.xml", false);
+        xmlhttp.send();
+        xmlDoc = xmlhttp.responseXML;
+
+        document.getElementById("code").innerHTML =
+            xmlDoc.getElementsByTagName("product")[0].getAttribute("code");
+        document.getElementById("category").innerHTML =
+            xmlDoc.getElementsByTagName("category")[0].childNodes[0].nodeValue;
+        document.getElementById("description").innerHTML =
+            xmlDoc.getElementsByTagName("description")[0].childNodes[0].nodeValue;
+        document.getElementById("quantity").innerHTML =
+            xmlDoc.getElementsByTagName("quantity")[0].childNodes[0].nodeValue;
+        document.getElementById("price").innerHTML =
+            xmlDoc.getElementsByTagName("price")[0].childNodes[0].nodeValue;
+    </script>
 </body>
-<script src="scripts.js"></script>
+
 </html>
